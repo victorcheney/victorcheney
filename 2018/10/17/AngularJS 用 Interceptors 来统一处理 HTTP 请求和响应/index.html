@@ -1,246 +1,95 @@
-
-<!DOCTYPE html>
-<html lang="zh-cn">
-    
+<!DOCTYPE HTML>
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="generator" content="陈峰涛">
-    <title> - 陈峰涛</title>
-    <meta name="author" content="陈峰涛">
-    
-        <meta name="keywords" content="hexo,javascript,">
-    
-    
-    
-        <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
-    
-    <meta name="description" content="主要功能 Interceptors 有两个处理时机，分别是： 其它程序代码执行 HTTP 请求之后，在实际从浏览器发出请求之前，即处理请求得到请求的响应之后，在交给其它程序代码处理之前，即处理请求的响应所以，不难理解它可以用于如下几个方面： 全局处理错误统一进行身份验证一类的处理对所有发出去的请求进行预处理对所有收到的响应进行预处理做一些增强用户体验的操作，例如显示一个进度条基本使用 先来看看最基">
-<meta name="keywords" content="hexo,javascript">
-<meta property="og:type" content="blog">
-<meta property="og:title" content="陈峰涛">
-<meta property="og:url" content="http://yoursite.com/2018/10/17/AngularJS 用 Interceptors 来统一处理 HTTP 请求和响应/index.html">
-<meta property="og:site_name" content="陈峰涛">
-<meta property="og:description" content="主要功能 Interceptors 有两个处理时机，分别是： 其它程序代码执行 HTTP 请求之后，在实际从浏览器发出请求之前，即处理请求得到请求的响应之后，在交给其它程序代码处理之前，即处理请求的响应所以，不难理解它可以用于如下几个方面： 全局处理错误统一进行身份验证一类的处理对所有发出去的请求进行预处理对所有收到的响应进行预处理做一些增强用户体验的操作，例如显示一个进度条基本使用 先来看看最基">
-<meta property="og:locale" content="zh-cn">
-<meta property="og:updated_time" content="2018-10-16T07:31:51.850Z">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="陈峰涛">
-<meta name="twitter:description" content="主要功能 Interceptors 有两个处理时机，分别是： 其它程序代码执行 HTTP 请求之后，在实际从浏览器发出请求之前，即处理请求得到请求的响应之后，在交给其它程序代码处理之前，即处理请求的响应所以，不难理解它可以用于如下几个方面： 全局处理错误统一进行身份验证一类的处理对所有发出去的请求进行预处理对所有收到的响应进行预处理做一些增强用户体验的操作，例如显示一个进度条基本使用 先来看看最基">
-    
-    
-        
-    
-    
-        <meta property="og:image" content="http://yoursite.com/assets/images/avatar.jpg"/>
-    
-    
-    
-    
-    <!--STYLES-->
-    <link rel="stylesheet" href="/assets/css/style-pz4cc6y13wt2trzqa8l3n9v0yykr0sstdaheem7qj628nhjmhp9pfawvqawz.min.css">
-    <!--STYLES END-->
-    
+  <meta charset="utf-8">
+  
+  <title>VictorCheney | inner peace</title>
 
-    
+  
+  <meta name="author" content="VictorCheney">
+  
+
+  
+  <meta name="description" content="主要功能
+Interceptors 有两个处理时机，分别是：
+其它程序代码执行 HTTP 请求之后，在实际从浏览器发出请求之前，即处理请求得到请求的响应之后，在交给其它程序代码处理之前，即处理请求的响应所以，不难理解它可以用于如下几个方面：
+全局处理错误统一进行身份验证一类的处理对所有发出去的请求进">
+  
+
+  
+  <meta name="keywords" content="hexo,javascript">
+  
+
+  <meta id="viewport" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+  
+
+  <meta property="og:site_name" content="VictorCheney"/>
+
+  
+  <meta property="og:image" content="/favicon.ico"/>
+  
+
+  <link href="/favicon.ico" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="VictorCheney" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
 </head>
 
-    <body>
-        <div id="blog">
-            <!-- Define author's picture -->
 
+<body>
+<div class="blog">
+  <div class="content">
 
-    
-        
-            
-        
-    
-
-<header id="header" data-behavior="4">
-    <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
-    <div class="header-title">
-        <a class="header-title-link" href="/ ">陈峰涛</a>
-    </div>
-    
-        
-            <a  class="header-right-picture "
-                href="#about">
-        
-        
-            <img class="header-picture" src="/assets/images/avatar.jpg" alt="作者的图片"/>
-        
-        </a>
-    
+    <header>
+  <div class="site-branding">
+    <h1 class="site-title">
+      <a href="/">VictorCheney</a>
+    </h1>
+    <p class="site-description">inner peace</p>
+  </div>
+  <nav class="site-navigation">
+    <ul>
+      
+        <li><a href="/">主页</a></li>
+      
+        <li><a href="/archives">归档</a></li>
+      
+        <li><a href="/categories">分类</a></li>
+      
+        <li><a href="/tags">标签</a></li>
+      
+    </ul>
+  </nav>
 </header>
 
-            <!-- Define author's picture -->
+    <main class="site-main posts-loop">
+    <article>
+
+  
+    
+    <h3 class="article-title"><span></span></h3>
+    
+  
+
+  <div class="article-top-meta">
+    <span class="posted-on">
+      <a href="/2018/10/17/AngularJS 用 Interceptors 来统一处理 HTTP 请求和响应/" rel="bookmark">
+        <time class="entry-date published" datetime="2018-10-17T08:53:38.208Z">
+          2018-10-17
+        </time>
+      </a>
+    </span>
+  </div>
 
 
+  
 
-        
-    
-
-<nav id="sidebar" data-behavior="4">
-    <div class="sidebar-container">
-        
-            <div class="sidebar-profile">
-                <a href="/#about">
-                    <img class="sidebar-profile-picture" src="/assets/images/avatar.jpg" alt="作者的图片"/>
-                </a>
-                <h4 class="sidebar-profile-name">陈峰涛</h4>
-                
-                    <h5 class="sidebar-profile-bio"><p>己所不欲，勿施于人</p>
-</h5>
-                
-            </div>
-        
-        
-            <ul class="sidebar-buttons">
-            
-                <li class="sidebar-button">
-                    
-                        <a  class="sidebar-button-link "
-                             href="/ "
-                            
-                            title="首页"
-                        >
-                    
-                        <i class="sidebar-button-icon fa fa-lg fa-home" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">首页</span>
-                    </a>
-            </li>
-            
-                <li class="sidebar-button">
-                    
-                        <a  class="sidebar-button-link "
-                             href="/all-categories"
-                            
-                            title="分类"
-                        >
-                    
-                        <i class="sidebar-button-icon fa fa-lg fa-bookmark" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">分类</span>
-                    </a>
-            </li>
-            
-                <li class="sidebar-button">
-                    
-                        <a  class="sidebar-button-link "
-                             href="/all-tags"
-                            
-                            title="标签"
-                        >
-                    
-                        <i class="sidebar-button-icon fa fa-lg fa-tags" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">标签</span>
-                    </a>
-            </li>
-            
-                <li class="sidebar-button">
-                    
-                        <a  class="sidebar-button-link "
-                             href="/all-archives"
-                            
-                            title="归档"
-                        >
-                    
-                        <i class="sidebar-button-icon fa fa-lg fa-archive" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">归档</span>
-                    </a>
-            </li>
-            
-                <li class="sidebar-button">
-                    
-                        <a  class="sidebar-button-link open-algolia-search"
-                             href="#search"
-                            
-                            title="搜索"
-                        >
-                    
-                        <i class="sidebar-button-icon fa fa-lg fa-search" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">搜索</span>
-                    </a>
-            </li>
-            
-                <li class="sidebar-button">
-                    
-                        <a  class="sidebar-button-link "
-                             href="#about"
-                            
-                            title="关于"
-                        >
-                    
-                        <i class="sidebar-button-icon fa fa-lg fa-question" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">关于</span>
-                    </a>
-            </li>
-            
-        </ul>
-        
-            <ul class="sidebar-buttons">
-            
-                <li class="sidebar-button">
-                    
-                        <a  class="sidebar-button-link " href="https://github.com/" target="_blank" rel="noopener" title="GitHub">
-                    
-                        <i class="sidebar-button-icon fa fa-lg fa-github" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">GitHub</span>
-                    </a>
-            </li>
-            
-        </ul>
-        
-            <ul class="sidebar-buttons">
-            
-                <li class="sidebar-button">
-                    
-                        <a  class="sidebar-button-link "
-                             href="/atom.xml"
-                            
-                            title="RSS"
-                        >
-                    
-                        <i class="sidebar-button-icon fa fa-lg fa-rss" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">RSS</span>
-                    </a>
-            </li>
-            
-        </ul>
-        
-    </div>
-</nav>
-
-            
-            <div id="main" data-behavior="4"
-                 class="
-                        hasCoverMetaIn
-                        ">
-                
-<article class="post" itemscope itemType="http://schema.org/BlogPosting">
-    
-    
-        <div class="post-header main-content-wrap text-left">
-    
-        <h1 class="post-title" itemprop="headline">
-            (无标题)
-        </h1>
-    
-    
-        <div class="post-meta">
-    <time itemprop="datePublished" datetime="2018-10-17T16:53:38+08:00">
-	
-		    10月 17, 2018
-    	
-    </time>
-    
-</div>
-
-    
-</div>
-    
-    <div class="post-content markdown" itemprop="articleBody">
-        <div class="main-content-wrap">
-            <p>主要功能</p>
+  <div class="article-content">
+    <div class="entry">
+      
+        <p>主要功能</p>
 <p>Interceptors 有两个处理时机，分别是：</p>
 <p>其它程序代码执行 HTTP 请求之后，在实际从浏览器发出请求之前，即处理请求<br>得到请求的响应之后，在交给其它程序代码处理之前，即处理请求的响应<br>所以，不难理解它可以用于如下几个方面：</p>
 <p>全局处理错误<br>统一进行身份验证一类的处理<br>对所有发出去的请求进行预处理<br>对所有收到的响应进行预处理<br>做一些增强用户体验的操作，例如显示一个进度条<br>基本使用</p>
@@ -287,247 +136,39 @@ let httpInterceptor = {
 
 }]);
 </code></pre>
-            
-
-        </div>
+      
     </div>
-    <div id="post-footer" class="post-footer main-content-wrap">
-        
-        
-            <div class="post-actions-wrap">
-    <nav>
-        <ul class="post-actions post-action-nav">
-            <li class="post-action">
-                
-                    <a class="post-action-btn btn btn--disabled">
-                
-                    <i class="fa fa-angle-left" aria-hidden="true"></i>
-                    <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
-                </a>
-            </li>
-            <li class="post-action">
-                
-                    
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2017/12/26/nodejs之文件路径/" data-tooltip="(无标题)" aria-label="下一篇: (无标题)">
-                
-                    <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
-                    <i class="fa fa-angle-right" aria-hidden="true"></i>
-                </a>
-            </li>
-        </ul>
-    </nav>
-    <ul class="post-actions post-action-share">
-        <li class="post-action hide-lg hide-md hide-sm">
-            <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Diesen Beitrag teilen">
-                <i class="fa fa-share-alt" aria-hidden="true"></i>
-            </a>
-        </li>
-        
-            
-            
-            <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2018/10/17/AngularJS 用 Interceptors 来统一处理 HTTP 请求和响应/" title="分享到 Facebook">
-                    <i class="fa fa-facebook-official" aria-hidden="true"></i>
-                </a>
-            </li>
-        
-            
-            
-            <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://yoursite.com/2018/10/17/AngularJS 用 Interceptors 来统一处理 HTTP 请求和响应/" title="分享到 Twitter">
-                    <i class="fa fa-twitter" aria-hidden="true"></i>
-                </a>
-            </li>
-        
-            
-            
-            <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://yoursite.com/2018/10/17/AngularJS 用 Interceptors 来统一处理 HTTP 请求和响应/" title="分享到 Google+">
-                    <i class="fa fa-google-plus" aria-hidden="true"></i>
-                </a>
-            </li>
-        
-        
-            
-        
-        <li class="post-action">
-            
-                <a class="post-action-btn btn btn--default" href="#" aria-label="Nach oben">
-            
-                <i class="fa fa-list" aria-hidden="true"></i>
-            </a>
-        </li>
-    </ul>
-</div>
 
+  </div>
 
-        
-        
-            
-        
+  <div class="article-footer">
+    <div class="article-meta pull-left">
+
+    
+
+    
+
     </div>
+
+    
+  </div>
 </article>
 
 
+    </main>
 
-                <footer id="footer" class="main-content-wrap">
-    <span class="copyrights">
-        Copyrights &copy; 2018 陈峰涛. All Rights Reserved.
-    </span>
+    <footer class="site-footer">
+  <p class="site-info">
+    Proudly powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and
+    Theme by <a href="https://github.com/CodeDaraW/Hacker" target="_blank">Hacker</a>
+    </br>
+    
+    &copy; 2018 VictorCheney
+    
+  </p>
 </footer>
-
-            </div>
-            
-                <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
-                    <div class="post-actions-wrap">
-    <nav>
-        <ul class="post-actions post-action-nav">
-            <li class="post-action">
-                
-                    <a class="post-action-btn btn btn--disabled">
-                
-                    <i class="fa fa-angle-left" aria-hidden="true"></i>
-                    <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
-                </a>
-            </li>
-            <li class="post-action">
-                
-                    
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2017/12/26/nodejs之文件路径/" data-tooltip="(无标题)" aria-label="下一篇: (无标题)">
-                
-                    <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
-                    <i class="fa fa-angle-right" aria-hidden="true"></i>
-                </a>
-            </li>
-        </ul>
-    </nav>
-    <ul class="post-actions post-action-share">
-        <li class="post-action hide-lg hide-md hide-sm">
-            <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Diesen Beitrag teilen">
-                <i class="fa fa-share-alt" aria-hidden="true"></i>
-            </a>
-        </li>
-        
-            
-            
-            <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2018/10/17/AngularJS 用 Interceptors 来统一处理 HTTP 请求和响应/" title="分享到 Facebook">
-                    <i class="fa fa-facebook-official" aria-hidden="true"></i>
-                </a>
-            </li>
-        
-            
-            
-            <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://yoursite.com/2018/10/17/AngularJS 用 Interceptors 来统一处理 HTTP 请求和响应/" title="分享到 Twitter">
-                    <i class="fa fa-twitter" aria-hidden="true"></i>
-                </a>
-            </li>
-        
-            
-            
-            <li class="post-action hide-xs">
-                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://yoursite.com/2018/10/17/AngularJS 用 Interceptors 来统一处理 HTTP 请求和响应/" title="分享到 Google+">
-                    <i class="fa fa-google-plus" aria-hidden="true"></i>
-                </a>
-            </li>
-        
-        
-            
-        
-        <li class="post-action">
-            
-                <a class="post-action-btn btn btn--default" href="#" aria-label="Nach oben">
-            
-                <i class="fa fa-list" aria-hidden="true"></i>
-            </a>
-        </li>
-    </ul>
-</div>
-
-
-                </div>
-                <div id="share-options-bar" class="share-options-bar" data-behavior="4">
-    <i id="btn-close-shareoptions" class="fa fa-close"></i>
-    <ul class="share-options">
-        
-            
-            
-            <li class="share-option">
-                <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2018/10/17/AngularJS 用 Interceptors 来统一处理 HTTP 请求和响应/">
-                    <i class="fa fa-facebook-official" aria-hidden="true"></i><span>分享到 Facebook</span>
-                </a>
-            </li>
-        
-            
-            
-            <li class="share-option">
-                <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=http://yoursite.com/2018/10/17/AngularJS 用 Interceptors 来统一处理 HTTP 请求和响应/">
-                    <i class="fa fa-twitter" aria-hidden="true"></i><span>分享到 Twitter</span>
-                </a>
-            </li>
-        
-            
-            
-            <li class="share-option">
-                <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=http://yoursite.com/2018/10/17/AngularJS 用 Interceptors 来统一处理 HTTP 请求和响应/">
-                    <i class="fa fa-google-plus" aria-hidden="true"></i><span>分享到 Google+</span>
-                </a>
-            </li>
-        
-    </ul>
-</div>
-
-            
-        </div>
-        
-
-
     
-        
-    
-
-<div id="about">
-    <div id="about-card">
-        <div id="about-btn-close">
-            <i class="fa fa-remove"></i>
-        </div>
-        
-            <img id="about-card-picture" src="/assets/images/avatar.jpg" alt="作者的图片"/>
-        
-            <h4 id="about-card-name">陈峰涛</h4>
-        
-            <div id="about-card-bio"><p>己所不欲，勿施于人</p>
+  </div>
 </div>
-        
-        
-            <div id="about-card-job">
-                <i class="fa fa-briefcase"></i>
-                <br/>
-                <p>前端工程师</p>
-
-            </div>
-        
-        
-            <div id="about-card-location">
-                <i class="fa fa-map-marker"></i>
-                <br/>
-                北京
-            </div>
-        
-    </div>
-</div>
-
-        
-        
-<div id="cover" style="background-image:url('/assets/images/cover.jpg');"></div>
-        <!--SCRIPTS-->
-<script src="/assets/js/script-peofhqjkzcghmndknakluequy1y6owxdwpaqyju9ntl9zxnk7rdolb3rjjoj.min.js"></script>
-<!--SCRIPTS END-->
-
-    
-
-
-
-    </body>
+</body>
 </html>

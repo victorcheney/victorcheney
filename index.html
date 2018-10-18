@@ -65,13 +65,13 @@
 
   
     
-    <h3 class="article-title"><a href="/2018/10/17/angularjs/"><span>HTML5 Geolocation API</span></a></h3>
+    <h3 class="article-title"><a href="/2018/10/17/AngularJS 用 Interceptors 来统一处理 HTTP 请求和响应/"><span>AngularJS用Interceptors来统一处理HTTP请求和响应</span></a></h3>
     
   
 
   <div class="article-top-meta">
     <span class="posted-on">
-      <a href="/2018/10/17/angularjs/" rel="bookmark">
+      <a href="/2018/10/17/AngularJS 用 Interceptors 来统一处理 HTTP 请求和响应/" rel="bookmark">
         <time class="entry-date published" datetime="2018-10-17T11:11:20.000Z">
           2018-10-17
         </time>
@@ -85,37 +85,68 @@
   <div class="article-content">
     <div class="entry">
       
-        <p>在HTML5中新增了Geolocation API方便用户定位，获取地理位置信息。通过设备获取地理位置可以通过以下方式：</p>
+        <p><strong>主要功能</strong><br>Interceptors 有两个处理时机，分别是：<br>1、其它程序代码执行 HTTP 请求之后，在实际从浏览器发出请求之前，即处理请求得到请求的响之后，在交给其它程序代码处理之前，即处理请求的响应所以，不难理解它可以用于如下几个方面：<br>2、全局处理错误统一进行身份验证一类的处理对所有发出去的请求进行预处理对所有收到的响应进行预处理做一些增强用户体验的操作，例如显示一个进度条基本使用<br>
+      
+    </div>
+
+  </div>
+
+  <div class="article-footer">
+    <div class="article-meta pull-left">
+
+    
+      
+
+    <span class="post-categories">
+      <i class="icon-categories"></i>
+        <a href="/categories/angularjs/">angularjs</a>
+    </span>
+    
+
+    
+    
+
+    <span class="post-tags">
+      <i class="icon-tags"></i>
+        <a href="/tags/angularjs/">angularjs</a><a href="/tags/Interceptors/">Interceptors</a><a href="/tags/拦截器/">拦截器</a>
+    </span>
+    
+
+    </div>
+
+    
+  </div>
+</article>
+
+
+
+  <article>
+
+  
+    
+    <h3 class="article-title"><a href="/2018/10/17/HTML5 Geolocation API/"><span>HTML5 Geolocation API</span></a></h3>
+    
+  
+
+  <div class="article-top-meta">
+    <span class="posted-on">
+      <a href="/2018/10/17/HTML5 Geolocation API/" rel="bookmark">
+        <time class="entry-date published" datetime="2018-10-17T11:11:20.000Z">
+          2018-10-17
+        </time>
+      </a>
+    </span>
+  </div>
+
+
+  
+
+  <div class="article-content">
+    <div class="entry">
+      
+        <p>在HTML5中新增了Geolocation API方便用户定位，获取地理位置信息。通过设备获取地理位置可以通过以下方式：  </p>
 <blockquote>
-<p>1、IP地址<br>2、三维坐标(GPS全球定位系统、从RFID、Wi-Fi到Wi-Fi的MAC地址、GSM或CDMA手机的ID)<br>3、用户自定义数据</p>
-</blockquote>
-<h4 id="1、IP地址地理定位数据"><a href="#1、IP地址地理定位数据" class="headerlink" title="1、IP地址地理定位数据"></a>1、IP地址地理定位数据</h4><pre><code>&gt; 实现方式是：自动查找用户的IP地址，然后检索其注册的物理地址。如果用户的IP是ISP（互联网服务提供商）提供
-的，获取的位置就由服务供应商的物理地址决定，该地址可能距离用户数千米。
-
-优点：任何地方都可以使用；在服务器端处理；
-缺点：不精确（经常出错，一般精确到城市级）；运算代价大；
-</code></pre><h4 id="2、GPS地理定位数据"><a href="#2、GPS地理定位数据" class="headerlink" title="2、GPS地理定位数据"></a>2、GPS地理定位数据</h4><pre><code>只要可以看到天空的地方，都可以使用GPS获取非常精确的定位结果。GPS定位是通过收集运行在地球周围的多个GPS卫星信号实现的。
-但是定位时间可能会很长，所以不适合需要快速响应定位的应用程序，开发人员可能需要异步查询用户位置。
-
-优点：很精确
-缺点：定位时间长，耗电量大，室内效果不好，需要额外的硬件设备。
-</code></pre><h4 id="3、Wi-Fi地理定位数据"><a href="#3、Wi-Fi地理定位数据" class="headerlink" title="3、Wi-Fi地理定位数据"></a>3、Wi-Fi地理定位数据</h4><pre><code>基于WiFi地理定位信息时通过三角计算得出的，这个三角距离是指用户当前位置到已知的多个WiFi接入点的距离。不同于GPS，WiFi定位在室内
-也很精确
-
-优点：精确，可在室内使用，可以简单、快捷定位；
-缺点：在乡村等无线接入点较少的地区效果不好。
-</code></pre><h4 id="4、手机地理定位数据"><a href="#4、手机地理定位数据" class="headerlink" title="4、手机地理定位数据"></a>4、手机地理定位数据</h4><pre><code>基于手机的地理定位信息时通过用户到一些基站的三角距离确定的。这种方法可以提供比较准确的位置结果。通常同基于WiFi和基于GPS的地理定
-位信息结合使用。
-
-优点：相当精确，可在室内使用，可以简单、快捷定位
-缺点：需要能够访问手机或其modem的设备，在基站较少的偏远地区效果不好
-</code></pre><h4 id="5、用户自定义的地理定位数据"><a href="#5、用户自定义的地理定位数据" class="headerlink" title="5、用户自定义的地理定位数据"></a>5、用户自定义的地理定位数据</h4><pre><code>除了通过编程计算出用户的位置外，也可以允许用户自定义其位置。程序可能允许用户输入他们的地址、邮政编码和其他一些详细信息。利用这些信息提供位置感知服务。
-
-优点：用户可以获得比程序定位更准确的位置数据，
-     允许地理定位服务的结果作为备用位置信息，
-     用户自行输入可能比自动检测更快
-缺点：可能很不准确，尤其是当用户位置变更后
-</code></pre>
+<p>1、IP地址<br>2、三维坐标(GPS全球定位系统、从RFID、Wi-Fi到Wi-Fi的MAC地址、GSM或CDMA手机的ID)<br>3、用户自定义数据<br>
       
     </div>
 
@@ -154,15 +185,15 @@
 
   
     
-    <h3 class="article-title"><a href="/2018/10/17/AngularJS 用 Interceptors 来统一处理 HTTP 请求和响应/"><span></span></a></h3>
+    <h3 class="article-title"><a href="/2017/09/17/nodejs之文件路径/"><span>nodejs中的几种文件路径比较</span></a></h3>
     
   
 
   <div class="article-top-meta">
     <span class="posted-on">
-      <a href="/2018/10/17/AngularJS 用 Interceptors 来统一处理 HTTP 请求和响应/" rel="bookmark">
-        <time class="entry-date published" datetime="2018-10-17T08:53:38.208Z">
-          2018-10-17
+      <a href="/2017/09/17/nodejs之文件路径/" rel="bookmark">
+        <time class="entry-date published" datetime="2017-09-17T05:11:20.000Z">
+          2017-09-17
         </time>
       </a>
     </span>
@@ -174,53 +205,7 @@
   <div class="article-content">
     <div class="entry">
       
-        <p>主要功能</p>
-<p>Interceptors 有两个处理时机，分别是：</p>
-<p>其它程序代码执行 HTTP 请求之后，在实际从浏览器发出请求之前，即处理请求<br>得到请求的响应之后，在交给其它程序代码处理之前，即处理请求的响应<br>所以，不难理解它可以用于如下几个方面：</p>
-<p>全局处理错误<br>统一进行身份验证一类的处理<br>对所有发出去的请求进行预处理<br>对所有收到的响应进行预处理<br>做一些增强用户体验的操作，例如显示一个进度条<br>基本使用</p>
-<p>先来看看最基本的使用：</p>
-<p>var app = angular.module(‘app’, []);</p>
-<p>// 定义一个 Service ，稍等将会把它作为 Interceptors 的处理函数<br>app.factory(‘HttpInterceptor’, [‘$q’, HttpInterceptor]);</p>
-<p>function HttpInterceptor($q) {<br>  return {<br>    request: function(config){<br>      return config;<br>    },<br>    requestError: function(err){<br>      return $q.reject(err);<br>    },<br>    response: function(res){<br>      return res;<br>    },<br>    responseError: function(err){<br>      if(-1 === err.status) {<br>        // 远程服务器无响应<br>      } else if(500 === err.status) {<br>        // 处理各类自定义错误<br>      } else if(501 === err.status) {<br>        // …<br>      }<br>      return $q.reject(err);<br>    }<br>  };<br>}</p>
-<p>// 添加对应的 Interceptors<br>app.config([‘$httpProvider’, function($httpProvider){<br>  $httpProvider.interceptors.push(HttpInterceptor);<br>}]);<br>进一步了解</p>
-<p>实际的 Interceptor 处理函数中， return 了一个包含四个成员的对象，这四个成员都 不是必须 的，可以按实际情况指定一二，分别如下：</p>
-<p>request ：接收一个参数，它是 $http 中的标准 config 对象，同时也需要返回一个标准 config ，此时可以添加各类身份验证信息，同时也可在此启动进度条<br>requestError ：当有多个 Interceptor 的时候， requestError 会在前一个 Interceptor 抛出错误或者执行 $q.reject() 时执行，接收的参数就对应的错误<br>response ：接受一个请求对象参数，可以不处理就直接返回，此时也可以将进度条显示为成功完成，当然，如果后端 API 返回自定义错误时，HTTP 的状态码仍然是 200 得话，便在这里处理自定义错误，也可以对返回数据做一些处理，注意要将进度条置为完成<br>responseError ：这个是重头戏，即可以处理标准的 Http 错误，如服务器没有响应时，或者 PHP 之类的 CGI 经常出现的 502 一类，还可以处理 HTTP 状态码不是 200 的各类自定义错误<br>上面四个中，前两个是请求的前置处理，后两个是针对请求的响应的处理。</p>
-<h2 id="Error-injector-cdep-angular-循环依赖解决方案"><a href="#Error-injector-cdep-angular-循环依赖解决方案" class="headerlink" title="Error: [$injector:cdep] angular 循环依赖解决方案"></a>Error: [$injector:cdep] angular 循环依赖解决方案</h2><pre><code>app.factory(&apos;httpInterceptor&apos;, [&apos;$q&apos;, &apos;$injector&apos;, &apos;$state&apos;, ($q, $injector，$state) =&gt; {
-
-let httpInterceptor = {
-    // 响应
-    response: (response) =&gt; {
-        // 判断权限
-        if (response &amp;&amp; response.data &amp;&amp; response.data._NO_PERMISSION_) {
-            $state.go(&apos;app.no_permission&apos;, {
-                message: response.data._ERROR_MESSAGE_ || &apos;没有访问权限&apos;
-            });
-        }
-        return response;
-    }
-
-}]);
-</code></pre><p>直接注入$state会导致循环注入错误</p>
-<pre><code>Error: [$injector:cdep] http://errors.angularjs.org/1.3.10/$injector/cdep?p0=$http &lt;- $templateFactory &lt;- $view &lt;- $state &lt;- httpInterceptor &lt;- $http &lt;- $translateStaticFilesLoader
-</code></pre><p>解决：在response方法中，手动注入$state</p>
-<pre><code>app.factory(&apos;httpInterceptor&apos;, [&apos;$q&apos;, &apos;$injector&apos;, ($q, $injector) =&gt; {
-
-    let httpInterceptor = {
-        // 响应
-        response: (response) =&gt; {
-            let $state = $injector.get(&apos;$state&apos;); // 手动注入
-
-            // 判断权限
-            if (response &amp;&amp; response.data &amp;&amp; response.data._NO_PERMISSION_) {
-                $state.go(&apos;app.no_permission&apos;, {
-                    message: response.data._ERROR_MESSAGE_ || &apos;没有访问权限&apos;
-                });
-            }
-            return response;
-        }
-
-}]);
-</code></pre>
+        <p>在调试一个node代码的时候，总是出问题，最后找到原因是由于路径的问题，node中的路径有全局变量<code>__dirname</code>、全局变量<code>__filename</code>、<code>./</code>、<code>../</code>以及<code>process.cwd()</code><br>首先看个例子：<br>
       
     </div>
 
@@ -230,59 +215,21 @@ let httpInterceptor = {
     <div class="article-meta pull-left">
 
     
+      
 
-    
-
-    </div>
-
-    
-  </div>
-</article>
-
-
-
-  <article>
-
-  
-    
-    <h3 class="article-title"><a href="/2017/12/26/nodejs之文件路径/"><span></span></a></h3>
-    
-  
-
-  <div class="article-top-meta">
-    <span class="posted-on">
-      <a href="/2017/12/26/nodejs之文件路径/" rel="bookmark">
-        <time class="entry-date published" datetime="2017-12-26T09:10:48.792Z">
-          2017-12-26
-        </time>
-      </a>
+    <span class="post-categories">
+      <i class="icon-categories"></i>
+        <a href="/categories/nodejs/">nodejs</a>
     </span>
-  </div>
-
-
-  
-
-  <div class="article-content">
-    <div class="entry">
-      
-        <h2 id="nodejs中的几种文件路径比较"><a href="#nodejs中的几种文件路径比较" class="headerlink" title="nodejs中的几种文件路径比较"></a>nodejs中的几种文件路径比较</h2><p>在调试一个node代码的时候，总是出问题，最后找到原因是由于路径的问题，node中的路径有全局变量<code>__dirname</code>、全局变量<code>__filename</code>、<code>./</code>、<code>../</code>以及<code>process.cwd()</code><br>首先看个例子：</p>
-<p>   在桌面的nodedemo文件夹新建了simple.js文件，对以上几种路径进行输出<br><img src="nodepath.png" alt=""></p>
-<p>1、__dirname: 表示当前模块所在的文件夹的绝对路径。</p>
-<p>2、__filename: 表示当前模块的绝对路径</p>
-<p>3、process.cwd()表示的是node进程当前工作的绝对路径</p>
-<p>4、./在打印的时候要借助path.resolve()进行转换，与process.cwd()效果相同</p>
-<p>5、../表示当前工作目录的上级目录</p>
-
-      
-    </div>
-
-  </div>
-
-  <div class="article-footer">
-    <div class="article-meta pull-left">
-
     
 
+    
+    
+
+    <span class="post-tags">
+      <i class="icon-tags"></i>
+        <a href="/tags/nodejs/">nodejs</a>
+    </span>
     
 
     </div>
